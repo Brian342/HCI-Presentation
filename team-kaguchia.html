@@ -1,0 +1,239 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Kaguchia Kago - Product Development</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="assets/css/noscript.css" />
+		<style>
+			body {
+				background: linear-gradient(135deg, #0f0c29 0%, #302b63 100%);
+			}
+
+			.team-profile-container {
+				max-width: 900px;
+				margin: 0 auto;
+				padding: 60px 20px;
+				color: white;
+			}
+
+			.back-btn {
+				display: inline-block;
+				margin-bottom: 40px;
+				padding: 12px 30px;
+				background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+				color: white;
+				text-decoration: none;
+				border-radius: 50px;
+				font-weight: 600;
+				transition: all 0.3s ease;
+			}
+
+			.back-btn:hover {
+				transform: translateX(-5px);
+				box-shadow: 0 15px 40px rgba(79,172,254,0.4);
+			}
+
+			.profile-header {
+				text-align: center;
+				margin-bottom: 50px;
+			}
+
+			.profile-image {
+				width: 200px;
+				height: 200px;
+				border-radius: 50%;
+				background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-size: 6em;
+				margin: 0 auto 30px;
+				box-shadow: 0 20px 60px rgba(79,172,254,0.3);
+			}
+
+			.profile-header h1 {
+				font-size: 2.5em;
+				margin-bottom: 10px;
+				background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+			}
+
+			.profile-role {
+				font-size: 1.3em;
+				color: rgba(255,255,255,0.8);
+				margin-bottom: 20px;
+			}
+
+			.profile-id {
+				font-size: 0.95em;
+				color: rgba(255,255,255,0.6);
+			}
+
+			.profile-content {
+				background: rgba(79, 172, 254, 0.05);
+				border: 1px solid rgba(79, 172, 254, 0.3);
+				border-radius: 20px;
+				padding: 40px;
+				backdrop-filter: blur(10px);
+				margin-bottom: 30px;
+			}
+
+			.profile-section {
+				margin-bottom: 40px;
+			}
+
+			.profile-section h2 {
+				font-size: 1.8em;
+				margin-bottom: 15px;
+				color: #00f2fe;
+				display: flex;
+				align-items: center;
+				gap: 10px;
+			}
+
+			.profile-section p {
+				font-size: 1.05em;
+				line-height: 1.8;
+				color: rgba(255,255,255,0.9);
+			}
+
+			.skills-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+				gap: 15px;
+				margin-top: 15px;
+			}
+
+			.skill-tag {
+				background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+				padding: 12px 20px;
+				border-radius: 25px;
+				text-align: center;
+				font-weight: 600;
+				box-shadow: 0 10px 25px rgba(79,172,254,0.2);
+				transition: all 0.3s ease;
+			}
+
+			.skill-tag:hover {
+				transform: translateY(-5px);
+				box-shadow: 0 15px 40px rgba(79,172,254,0.4);
+			}
+
+			.achievements {
+				list-style: none;
+				padding: 0;
+			}
+
+			.achievements li {
+				padding: 12px 0;
+				padding-left: 30px;
+				position: relative;
+				margin-bottom: 15px;
+			}
+
+			.achievements li::before {
+				content: '✓';
+				position: absolute;
+				left: 0;
+				color: #00f2fe;
+				font-weight: bold;
+				font-size: 1.2em;
+			}
+
+			.contact-section {
+				text-align: center;
+				padding: 30px;
+				background: linear-gradient(135deg, #4facfe20 0%, #00f2fe20 100%);
+				border-radius: 15px;
+				border: 1px solid rgba(79,172,254,0.3);
+			}
+
+			.contact-section a {
+				display: inline-block;
+				margin: 0 15px;
+				padding: 12px 30px;
+				background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+				color: white;
+				text-decoration: none;
+				border-radius: 25px;
+				font-weight: 600;
+				transition: all 0.3s ease;
+				margin-bottom: 10px;
+			}
+
+			.contact-section a:hover {
+				transform: scale(1.05);
+				box-shadow: 0 15px 40px rgba(79,172,254,0.4);
+			}
+		</style>
+	</head>
+	<body class="is-preload">
+		<div class="team-profile-container">
+			<a href="index.html" class="back-btn">← Back to Home</a>
+
+			<div class="profile-header">
+				<div class="profile-image">🎨</div>
+				<h1>Kaguchia Kago</h1>
+				<p class="profile-role">Product Development Lead</p>
+				<p class="profile-id">SCT221-0522/2022</p>
+			</div>
+
+			<div class="profile-content">
+				<div class="profile-section">
+					<h2>🎯 Overview</h2>
+					<p>Kaguchia is a creative and innovative product developer with a talent for translating ideas into compelling user experiences. With a background in full-stack development and design thinking, she brings products to life with both functionality and elegance.</p>
+				</div>
+
+				<div class="profile-section">
+					<h2>💼 Role & Responsibilities</h2>
+					<p>As Product Development Lead, Kaguchia manages:</p>
+					<ul class="achievements">
+						<li>Building innovative product features from concept to launch</li>
+						<li>Collaborating with design and engineering teams</li>
+						<li>Prototyping and validating product ideas</li>
+						<li>Managing product development cycles and timelines</li>
+						<li>Ensuring quality and user satisfaction</li>
+					</ul>
+				</div>
+
+				<div class="profile-section">
+					<h2>🎓 Key Skills</h2>
+					<div class="skills-grid">
+						<div class="skill-tag">Product Design</div>
+						<div class="skill-tag">Prototyping</div>
+						<div class="skill-tag">User Experience</div>
+						<div class="skill-tag">Full Stack Dev</div>
+						<div class="skill-tag">Agile/Scrum</div>
+						<div class="skill-tag">Innovation</div>
+					</div>
+				</div>
+
+				<div class="profile-section">
+					<h2>📈 Achievements</h2>
+					<ul class="achievements">
+						<li>Led development of award-winning product features</li>
+						<li>Reduced product development cycle time by 40%</li>
+						<li>Successfully launched 8 major product releases</li>
+						<li>Built cross-functional teams to deliver complex features</li>
+						<li>Achieved 95% feature delivery on schedule</li>
+					</ul>
+				</div>
+
+				<div class="profile-section">
+					<h2>💡 Philosophy</h2>
+					<p>"The best products come from understanding both the technical possibilities and human needs. By combining creative thinking with disciplined execution, we can build products that users love and businesses thrive on."</p>
+				</div>
+
+				<div class="contact-section">
+					<h2 style="color: white; margin-top: 0;">Get In Touch</h2>
+					<p style="margin-bottom: 20px;">Interested in discussing product development or innovation initiatives?</p>
+					<a href="mailto:kaguchia@company.com">Email</a>
+					<a href="#linkedin">LinkedIn</a>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

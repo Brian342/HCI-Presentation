@@ -1,0 +1,239 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Brian Kimanzi - Technical Architecture</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="assets/css/noscript.css" />
+		<style>
+			body {
+				background: linear-gradient(135deg, #0f0c29 0%, #302b63 100%);
+			}
+
+			.team-profile-container {
+				max-width: 900px;
+				margin: 0 auto;
+				padding: 60px 20px;
+				color: white;
+			}
+
+			.back-btn {
+				display: inline-block;
+				margin-bottom: 40px;
+				padding: 12px 30px;
+				background: linear-gradient(135deg, #f5576c 0%, #f093fb 100%);
+				color: white;
+				text-decoration: none;
+				border-radius: 50px;
+				font-weight: 600;
+				transition: all 0.3s ease;
+			}
+
+			.back-btn:hover {
+				transform: translateX(-5px);
+				box-shadow: 0 15px 40px rgba(245,87,108,0.4);
+			}
+
+			.profile-header {
+				text-align: center;
+				margin-bottom: 50px;
+			}
+
+			.profile-image {
+				width: 200px;
+				height: 200px;
+				border-radius: 50%;
+				background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-size: 6em;
+				margin: 0 auto 30px;
+				box-shadow: 0 20px 60px rgba(245,87,108,0.3);
+			}
+
+			.profile-header h1 {
+				font-size: 2.5em;
+				margin-bottom: 10px;
+				background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+			}
+
+			.profile-role {
+				font-size: 1.3em;
+				color: rgba(255,255,255,0.8);
+				margin-bottom: 20px;
+			}
+
+			.profile-id {
+				font-size: 0.95em;
+				color: rgba(255,255,255,0.6);
+			}
+
+			.profile-content {
+				background: rgba(245, 87, 108, 0.05);
+				border: 1px solid rgba(245, 87, 108, 0.3);
+				border-radius: 20px;
+				padding: 40px;
+				backdrop-filter: blur(10px);
+				margin-bottom: 30px;
+			}
+
+			.profile-section {
+				margin-bottom: 40px;
+			}
+
+			.profile-section h2 {
+				font-size: 1.8em;
+				margin-bottom: 15px;
+				color: #f5576c;
+				display: flex;
+				align-items: center;
+				gap: 10px;
+			}
+
+			.profile-section p {
+				font-size: 1.05em;
+				line-height: 1.8;
+				color: rgba(255,255,255,0.9);
+			}
+
+			.skills-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+				gap: 15px;
+				margin-top: 15px;
+			}
+
+			.skill-tag {
+				background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+				padding: 12px 20px;
+				border-radius: 25px;
+				text-align: center;
+				font-weight: 600;
+				box-shadow: 0 10px 25px rgba(245,87,108,0.2);
+				transition: all 0.3s ease;
+			}
+
+			.skill-tag:hover {
+				transform: translateY(-5px);
+				box-shadow: 0 15px 40px rgba(245,87,108,0.4);
+			}
+
+			.achievements {
+				list-style: none;
+				padding: 0;
+			}
+
+			.achievements li {
+				padding: 12px 0;
+				padding-left: 30px;
+				position: relative;
+				margin-bottom: 15px;
+			}
+
+			.achievements li::before {
+				content: '✓';
+				position: absolute;
+				left: 0;
+				color: #f5576c;
+				font-weight: bold;
+				font-size: 1.2em;
+			}
+
+			.contact-section {
+				text-align: center;
+				padding: 30px;
+				background: linear-gradient(135deg, #f5576c20 0%, #f09fb220 100%);
+				border-radius: 15px;
+				border: 1px solid rgba(245,87,108,0.3);
+			}
+
+			.contact-section a {
+				display: inline-block;
+				margin: 0 15px;
+				padding: 12px 30px;
+				background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+				color: white;
+				text-decoration: none;
+				border-radius: 25px;
+				font-weight: 600;
+				transition: all 0.3s ease;
+				margin-bottom: 10px;
+			}
+
+			.contact-section a:hover {
+				transform: scale(1.05);
+				box-shadow: 0 15px 40px rgba(245,87,108,0.4);
+			}
+		</style>
+	</head>
+	<body class="is-preload">
+		<div class="team-profile-container">
+			<a href="index.html" class="back-btn">← Back to Home</a>
+
+			<div class="profile-header">
+				<div class="profile-image">💻</div>
+				<h1>Brian Kimanzi</h1>
+				<p class="profile-role">Technical Architecture Lead</p>
+				<p class="profile-id">SCT221-0181/2023</p>
+			</div>
+
+			<div class="profile-content">
+				<div class="profile-section">
+					<h2>🎯 Overview</h2>
+					<p>Brian is a seasoned technical architect with a passion for designing scalable and robust systems. With expertise in cloud computing, microservices, and modern development practices, he ensures our technical infrastructure supports rapid growth and innovation.</p>
+				</div>
+
+				<div class="profile-section">
+					<h2>💼 Role & Responsibilities</h2>
+					<p>As Technical Architecture Lead, Brian oversees:</p>
+					<ul class="achievements">
+						<li>Designing system architectures for scalability and performance</li>
+						<li>Evaluating and integrating new technologies</li>
+						<li>Establishing technical standards and best practices</li>
+						<li>Leading technical teams and code reviews</li>
+						<li>Optimizing system performance and reliability</li>
+					</ul>
+				</div>
+
+				<div class="profile-section">
+					<h2>🎓 Key Skills</h2>
+					<div class="skills-grid">
+						<div class="skill-tag">System Design</div>
+						<div class="skill-tag">Cloud Architecture</div>
+						<div class="skill-tag">Microservices</div>
+						<div class="skill-tag">Full Stack Dev</div>
+						<div class="skill-tag">DevOps</div>
+						<div class="skill-tag">Software Security</div>
+					</div>
+				</div>
+
+				<div class="profile-section">
+					<h2>📈 Achievements</h2>
+					<ul class="achievements">
+						<li>Architected a microservices platform serving millions of requests daily</li>
+						<li>Reduced system latency by 60% through optimization initiatives</li>
+						<li>Led migration to cloud infrastructure, improving scalability 10x</li>
+						<li>Established CI/CD pipelines reducing deployment time by 80%</li>
+						<li>Mentored 15+ junior developers in software architecture principles</li>
+					</ul>
+				</div>
+
+				<div class="profile-section">
+					<h2>💡 Philosophy</h2>
+					<p>"Building great software requires thinking beyond today's needs. By designing with scalability, maintainability, and performance in mind, we create systems that can evolve with our business while staying robust and secure."</p>
+				</div>
+
+				<div class="contact-section">
+					<h2 style="color: white; margin-top: 0;">Get In Touch</h2>
+					<p style="margin-bottom: 20px;">Want to discuss technical architecture or collaboration opportunities?</p>
+					<a href="mailto:brian@company.com">Email</a>
+					<a href="#linkedin">LinkedIn</a>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
