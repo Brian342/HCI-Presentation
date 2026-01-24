@@ -1,148 +1,841 @@
 <!DOCTYPE HTML>
-<!--
-	Hyperspace by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
 <html>
 	<head>
-		<title>Hyperspace by HTML5 UP</title>
+		<title>Product Showcase - 3D Experience</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<link rel="stylesheet" href="assets/css/noscript.css" />
+		<style>
+			/* 3D Product Showcase Styles */
+			body {
+				perspective: 1200px;
+				overflow-x: hidden;
+			}
+
+			.product-container {
+				perspective: 1000px;
+			}
+
+			.product-card {
+				transform-style: preserve-3d;
+				transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+				cursor: pointer;
+				position: relative;
+			}
+
+			.product-card:hover {
+				transform: rotateY(8deg) rotateX(-5deg) scale(1.05);
+			}
+
+			.product-card::before {
+				content: '';
+				position: absolute;
+				inset: 0;
+				background: linear-gradient(135deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 50%);
+				border-radius: 20px;
+				pointer-events: none;
+				z-index: 10;
+			}
+
+			.card-inner {
+				position: relative;
+				width: 100%;
+				height: 100%;
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+				padding: 40px;
+				background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+				border-radius: 20px;
+				box-shadow: 0 20px 60px rgba(0,0,0,0.3), 0 0 40px rgba(102,126,234,0.4);
+				color: white;
+				overflow: hidden;
+			}
+
+			.card-inner::before {
+				content: '';
+				position: absolute;
+				top: -50%;
+				right: -50%;
+				width: 200%;
+				height: 200%;
+				background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+				animation: float 6s ease-in-out infinite;
+			}
+
+			@keyframes float {
+				0%, 100% { transform: translate(0, 0); }
+				50% { transform: translate(20px, 20px); }
+			}
+
+			.hero-3d {
+				min-height: 100vh;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+				position: relative;
+				overflow: hidden;
+			}
+
+			.hero-3d::before {
+				content: '';
+				position: absolute;
+				width: 400px;
+				height: 400px;
+				background: radial-gradient(circle, rgba(102,126,234,0.3) 0%, transparent 70%);
+				animation: orb1 20s ease-in-out infinite;
+				border-radius: 50%;
+				top: 10%;
+				left: 10%;
+			}
+
+			.hero-3d::after {
+				content: '';
+				position: absolute;
+				width: 300px;
+				height: 300px;
+				background: radial-gradient(circle, rgba(118,75,162,0.3) 0%, transparent 70%);
+				animation: orb2 25s ease-in-out infinite;
+				border-radius: 50%;
+				bottom: 10%;
+				right: 10%;
+			}
+
+			@keyframes orb1 {
+				0%, 100% { transform: translate(0, 0) scale(1); }
+				50% { transform: translate(50px, 50px) scale(1.1); }
+			}
+
+			@keyframes orb2 {
+				0%, 100% { transform: translate(0, 0) scale(1); }
+				50% { transform: translate(-50px, -50px) scale(1.1); }
+			}
+
+			.hero-content {
+				position: relative;
+				z-index: 10;
+				text-align: center;
+				color: white;
+			}
+
+			.hero-content h1 {
+				font-size: 4.5em;
+				font-weight: 800;
+				margin-bottom: 20px;
+				background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+				text-shadow: 0 2px 10px rgba(102,126,234,0.2);
+			}
+
+			.hero-content p {
+				font-size: 1.5em;
+				margin-bottom: 40px;
+				color: rgba(255,255,255,0.8);
+			}
+
+			.products-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+				gap: 40px;
+				padding: 60px 20px;
+				max-width: 1400px;
+				margin: 0 auto;
+			}
+
+			.product-item {
+				min-height: 400px;
+			}
+
+			.product-item:nth-child(1) .card-inner {
+				background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+			}
+
+			.product-item:nth-child(2) .card-inner {
+				background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+			}
+
+			.product-item:nth-child(3) .card-inner {
+				background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+			}
+
+			.product-item:nth-child(4) .card-inner {
+				background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+			}
+
+			.product-item:nth-child(5) .card-inner {
+				background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+			}
+
+			.product-item:nth-child(6) .card-inner {
+				background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);
+			}
+
+			.card-inner h2 {
+				font-size: 1.8em;
+				margin-bottom: 15px;
+				text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+				position: relative;
+				z-index: 2;
+			}
+
+			.card-inner p {
+				font-size: 0.95em;
+				line-height: 1.6;
+				opacity: 0.95;
+				position: relative;
+				z-index: 2;
+			}
+
+			.icon-3d {
+				font-size: 3em;
+				margin-bottom: 20px;
+				position: relative;
+				z-index: 2;
+				filter: drop-shadow(0 5px 15px rgba(0,0,0,0.2));
+			}
+
+			section.wrapper {
+				background: #fafafa;
+			}
+
+			section.wrapper.dark {
+				background: linear-gradient(135deg, #0f0c29 0%, #302b63 100%);
+				color: white;
+			}
+
+			.section-title {
+				text-align: center;
+				margin-bottom: 60px;
+			}
+
+			.section-title h2 {
+				font-size: 2.8em;
+				margin-bottom: 10px;
+				background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+			}
+
+			.separator {
+				width: 100px;
+				height: 4px;
+				background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+				margin: 20px auto;
+				border-radius: 2px;
+			}
+
+			.scroll-indicator {
+				position: absolute;
+				bottom: 30px;
+				left: 50%;
+				transform: translateX(-50%);
+				animation: bounce 2s infinite;
+				z-index: 20;
+			}
+
+			@keyframes bounce {
+				0%, 100% { transform: translateX(-50%) translateY(0); }
+				50% { transform: translateX(-50%) translateY(20px); }
+			}
+
+			.cta-button {
+				display: inline-block;
+				padding: 15px 40px;
+				background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+				color: white;
+				text-decoration: none;
+				border-radius: 50px;
+				font-weight: 600;
+				transition: all 0.3s ease;
+				position: relative;
+				overflow: hidden;
+				z-index: 2;
+			}
+
+			.cta-button::before {
+				content: '';
+				position: absolute;
+				inset: 0;
+				background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+				transform: translateX(-100%);
+				transition: transform 0.3s ease;
+				z-index: -1;
+			}
+
+			.cta-button:hover::before {
+				transform: translateX(0);
+			}
+
+			.cta-button:hover {
+				transform: scale(1.05);
+				box-shadow: 0 15px 40px rgba(102,126,234,0.4);
+			}
+
+			/* Team Section Styles */
+			.team-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+				gap: 40px;
+				padding: 60px 20px;
+				max-width: 1400px;
+				margin: 0 auto;
+			}
+
+			.team-member {
+				perspective: 1000px;
+				cursor: pointer;
+				position: relative;
+			}
+
+			.team-card {
+				background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+				border-radius: 20px;
+				overflow: hidden;
+				box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+				transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+				transform-style: preserve-3d;
+				position: relative;
+				height: 100%;
+				display: flex;
+				flex-direction: column;
+			}
+
+			.team-member:hover .team-card {
+				transform: rotateY(5deg) rotateX(-8deg) translateY(-20px);
+				box-shadow: 0 30px 80px rgba(102, 126, 234, 0.5);
+			}
+
+			.team-card::before {
+				content: '';
+				position: absolute;
+				inset: 0;
+				background: linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0) 50%);
+				pointer-events: none;
+				border-radius: 20px;
+			}
+
+			.team-card-header {
+				position: relative;
+				width: 100%;
+				height: 280px;
+				background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				overflow: hidden;
+			}
+
+			.team-card-header::after {
+				content: '';
+				position: absolute;
+				inset: 0;
+				background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.2) 0%, transparent 70%);
+			}
+
+			.team-image {
+				width: 180px;
+				height: 180px;
+				border-radius: 50%;
+				background: rgba(255,255,255,0.1);
+				border: 4px solid rgba(255,255,255,0.3);
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-size: 4em;
+				position: relative;
+				z-index: 2;
+				backdrop-filter: blur(10px);
+				object-fit: cover;
+			}
+
+			.team-info {
+				padding: 30px 25px;
+				color: white;
+				flex-grow: 1;
+				display: flex;
+				flex-direction: column;
+				position: relative;
+				z-index: 2;
+			}
+
+			.team-info h3 {
+				font-size: 1.5em;
+				margin-bottom: 8px;
+				font-weight: 700;
+				text-shadow: 0 2px 8px rgba(0,0,0,0.2);
+			}
+
+			.team-role {
+				display: inline-block;
+				background: rgba(255,255,255,0.2);
+				padding: 6px 16px;
+				border-radius: 20px;
+				font-size: 0.85em;
+				margin-bottom: 15px;
+				width: fit-content;
+				backdrop-filter: blur(10px);
+				border: 1px solid rgba(255,255,255,0.3);
+			}
+
+			.team-description {
+				font-size: 0.95em;
+				line-height: 1.6;
+				opacity: 0.95;
+				margin-bottom: 20px;
+				flex-grow: 1;
+			}
+
+			.view-profile-btn {
+				display: inline-block;
+				padding: 10px 24px;
+				background: rgba(255,255,255,0.2);
+				border: 2px solid rgba(255,255,255,0.4);
+				color: white;
+				text-decoration: none;
+				border-radius: 25px;
+				font-weight: 600;
+				font-size: 0.9em;
+				transition: all 0.3s ease;
+				backdrop-filter: blur(10px);
+				align-self: flex-start;
+				cursor: pointer;
+			}
+
+			.view-profile-btn:hover {
+				background: rgba(255,255,255,0.3);
+				border-color: rgba(255,255,255,0.6);
+				transform: translateX(5px);
+				box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+			}
+
+			.team-member:nth-child(1) .team-card-header {
+				background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+			}
+
+			.team-member:nth-child(2) .team-card-header {
+				background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+			}
+
+			.team-member:nth-child(3) .team-card-header {
+				background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+			}
+
+			.team-member:nth-child(4) .team-card-header {
+				background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+			}
+
+			.team-member:nth-child(5) .team-card-header {
+				background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+			}
+
+			@media (max-width: 768px) {
+				.team-grid {
+					grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+					gap: 25px;
+				}
+
+				.team-card-header {
+					height: 240px;
+				}
+
+				.team-image {
+					width: 140px;
+					height: 140px;
+					font-size: 3em;
+				}
+			}
+		</style>
 	</head>
 	<body class="is-preload">
 
 		<!-- Sidebar -->
-			<section id="sidebar">
-				<div class="inner">
-					<nav>
-						<ul>
-							<li><a href="#intro">Welcome</a></li>
-							<li><a href="#one">What was done</a></li>
-							<li><a href="#two">What we did</a></li>
-						</ul>
-					</nav>
+		<section id="sidebar">
+			<div class="inner">
+				<nav>
+					<ul>
+						<li><a href="#intro">Showcase</a></li>
+						<li><a href="#products">Products</a></li>
+						<li><a href="#team">Our Team</a></li>
+						<li><a href="#contact">Contact</a></li>
+					</ul>
+				</nav>
+			</div>
+		</section>
+
+		<!-- Wrapper -->
+		<div id="wrapper">
+
+			<!-- Hero Section -->
+			<section id="intro" class="hero-3d">
+				<div class="hero-content">
+					<h1>Our Products</h1>
+					<p>Experience innovation in 3D</p>
+					<a href="#products" class="cta-button">Explore Now</a>
+				</div>
+				<div class="scroll-indicator">
+					<svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M15 20L8 13M15 20L22 13M15 20V10" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+					</svg>
 				</div>
 			</section>
 
-		<!-- Wrapper -->
-			<div id="wrapper">
+			<!-- Products Grid -->
+			<section id="products" class="wrapper dark">
+				<div style="max-width: 1400px; margin: 0 auto; padding: 80px 20px;">
+					<div class="section-title">
+						<h2>Our Product Line</h2>
+						<div class="separator"></div>
+						<p>Discover our innovative solutions designed for modern businesses</p>
+					</div>
 
-				<!-- Intro -->
-					<section id="intro" class="wrapper style1 fullscreen fade-up">
-						<div class="inner">
-							<h1>Ecitizen</h1>
-							<p>Hello welcome to the Ecitizen Design Project</a><br />
-							in this Project we are tackling and handling the Passport Application System and <br/>the Settings Systems on the Ecitizen Platform.</a>.</p>
-							
+					<div class="products-grid">
+						<div class="product-item">
+							<div class="product-card">
+								<div class="card-inner">
+									<div>
+										<div class="icon-3d">🚀</div>
+										<h2>Digital Solutions</h2>
+										<p>Transform your business with cutting-edge digital tools and cloud-based platforms designed for scalability and performance.</p>
+									</div>
+									<a href="#" class="cta-button" style="align-self: flex-start;">Learn More</a>
+								</div>
+							</div>
 						</div>
-					</section>
 
-				<!-- One -->
-					<section id="one" class="wrapper style2 spotlights">
-						<section>
-							<a href="#" class="image"><img src="images/passport.jpg" alt="" data-position="center center" /></a>
-							<div class="content">
-								<div class="inner">
-									<h2>Passport System</h2>
-									<p>ECitizen Passport Service is the official digital platform used by the Government of Kenya to facilitate the application, renewal and replacement of Kenyan passports. It is managed by the Directorate of Immigration Services and acts as a central hub to move the traditionally manual process into a more efficient, digital-first system..</p>
-									
+						<div class="product-item">
+							<div class="product-card">
+								<div class="card-inner">
+									<div>
+										<div class="icon-3d">🔐</div>
+										<h2>Security Suite</h2>
+										<p>Enterprise-grade security solutions protecting your data with advanced encryption and threat detection systems.</p>
+									</div>
+									<a href="#" class="cta-button" style="align-self: flex-start;">Learn More</a>
 								</div>
 							</div>
-						</section>
-						<section>
-							<a href="#" class="image"><img src="images/settings.jpg" alt="" data-position="top center" /></a>
-							<div class="content">
-								<div class="inner">
-									<h2>Settings</h2>
-									<p>ECitizen Settings Service (often referred to as Profile Management) is the core administrative component of the Kenyan eCitizen portal. It acts as the central hub where users manage their digital identity, security credentials, and personal information</p>
-									
-								</div>
-							</div>
-						</section>
-						<section>
-							<a href="#" class="image"><img src="images/chatbot.jpg" alt="" data-position="25% 25%" /></a>
-							<div class="content">
-								<div class="inner">
-									<h2>ChatBot</h2>
-									<p>an AI-powered digital assistant designed to help Kenyans and residents navigate the vast array of government services on the eCitizen portal..</p>
-									
-								</div>
-							</div>
-						</section>
-					</section>
-
-				<!-- Two -->
-					<section id="two" class="wrapper style3 fade-up">
-						<div class="inner">
-							<h2>What Each Member is Tasked</h2>
-							<p></p>
-							<div class="features">
-								<section>
-									<span class="icon solid major fa-code"></span>
-									<h3>Marylyne Nashipae</h3>
-									<h3>SCT221-0207/2023</h3>
-
-									<p>User Analysis.</p>
-								</section>
-								<section>
-									<span class="icon solid major fa-lock"></span>
-									<h3>Brian Kimanzi</h3>
-									<h3>SCT221-0181/2023</h3>
-
-									<p>WireFrame Design.</p>
-								</section>
-								<section>
-									<span class="icon solid major fa-cog"></span>
-									<h3>Kaguchia Kago</h3>
-									<h3>SCT221-0522/2022</h3>
-
-									<p>Prototype Design</p>
-								</section>
-								<section>
-									<span class="icon solid major fa-desktop"></span>
-									<h3>Katra Noor</h3>
-									<h3>SCT221-0397/2022</h3>
-
-									<p>Usability Design.</p>
-								</section>
-								<section>
-									<span class="icon solid major fa-link"></span>
-									<h3>Stephen Githua</h3>
-									<h3>SCT221-0668/2022</h3>
-
-									<p>Domain Analysis</p>
-								</section>
-								<section>
-									<span class="icon major fa-gem"></span>
-									<h3>Ecitizen Link PowerPoint</h3>
-									<p>Link: <a href="https://1drv.ms/p/c/9bcf20b2eb1e8b9a/IQBt2qlGkzXvQpByFN2uaHGCAREu-y7IcGZsloqgXhImjPk?e=lZjsXB">Visit Online Power Point</a></p>
-								</section>
-							</div>
-							
 						</div>
-					</section>
 
+						<div class="product-item">
+							<div class="product-card">
+								<div class="card-inner">
+									<div>
+										<div class="icon-3d">⚙️</div>
+										<h2>Platform Management</h2>
+										<p>Comprehensive management tools for seamless integration and administration of your organizational infrastructure.</p>
+									</div>
+									<a href="#" class="cta-button" style="align-self: flex-start;">Learn More</a>
+								</div>
+							</div>
+						</div>
+
+						<div class="product-item">
+							<div class="product-card">
+								<div class="card-inner">
+									<div>
+										<div class="icon-3d">📊</div>
+										<h2>Analytics Engine</h2>
+										<p>Real-time data insights and powerful analytics to drive informed business decisions and strategic planning.</p>
+									</div>
+									<a href="#" class="cta-button" style="align-self: flex-start;">Learn More</a>
+								</div>
+							</div>
+						</div>
+
+						<div class="product-item">
+							<div class="product-card">
+								<div class="card-inner">
+									<div>
+										<div class="icon-3d">🤖</div>
+										<h2>AI Assistant</h2>
+										<p>Intelligent automation powered by machine learning to streamline operations and enhance customer experience.</p>
+									</div>
+									<a href="#" class="cta-button" style="align-self: flex-start;">Learn More</a>
+								</div>
+							</div>
+						</div>
+
+						<div class="product-item">
+							<div class="product-card">
+								<div class="card-inner">
+									<div>
+										<div class="icon-3d">🌐</div>
+										<h2>Integration Hub</h2>
+										<p>Seamlessly connect all your business applications and services through our powerful integration platform.</p>
+									</div>
+									<a href="#" class="cta-button" style="align-self: flex-start;">Learn More</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- Team Section -->
+			<section id="team" class="wrapper dark">
+				<div style="max-width: 1400px; margin: 0 auto; padding: 80px 20px;">
+					<div class="section-title">
+						<h2>Meet Our Team</h2>
+						<div class="separator"></div>
+						<p>Talented individuals driving innovation and excellence</p>
+					</div>
+
+					<div class="team-grid">
+						<!-- Team Member 1 -->
+						<div class="team-member">
+							<a href="team-marylyne.html" style="text-decoration: none; color: inherit;">
+								<div class="team-card">
+									<div class="team-card-header">
+										<div class="team-image">👩‍💼</div>
+									</div>
+									<div class="team-info">
+										<h3>Marylyne Nashipae</h3>
+										<div class="team-role">Product Strategy</div>
+										<p class="team-description">Driving product vision and market insights with a focus on user-centric solutions.</p>
+										<a href="team-marylyne.html" class="view-profile-btn">View Profile</a>
+									</div>
+								</div>
+							</a>
+						</div>
+
+						<!-- Team Member 2 -->
+						<div class="team-member">
+							<a href="team-brian.html" style="text-decoration: none; color: inherit;">
+								<div class="team-card">
+									<div class="team-card-header">
+										<div class="team-image">💻</div>
+									</div>
+									<div class="team-info">
+										<h3>Brian Kimanzi</h3>
+										<div class="team-role">Technical Architecture</div>
+										<p class="team-description">Designing robust and scalable solutions with cutting-edge technologies.</p>
+										<a href="team-brian.html" class="view-profile-btn">View Profile</a>
+									</div>
+								</div>
+							</a>
+						</div>
+
+						<!-- Team Member 3 -->
+						<div class="team-member">
+							<a href="team-kaguchia.html" style="text-decoration: none; color: inherit;">
+								<div class="team-card">
+									<div class="team-card-header">
+										<div class="team-image">🎨</div>
+									</div>
+									<div class="team-info">
+										<h3>Kaguchia Kago</h3>
+										<div class="team-role">Product Development</div>
+										<p class="team-description">Building innovative features that deliver real value to users.</p>
+										<a href="team-kaguchia.html" class="view-profile-btn">View Profile</a>
+									</div>
+								</div>
+							</a>
+						</div>
+
+						<!-- Team Member 4 -->
+						<div class="team-member">
+							<a href="team-katra.html" style="text-decoration: none; color: inherit;">
+								<div class="team-card">
+									<div class="team-card-header">
+										<div class="team-image">✅</div>
+									</div>
+									<div class="team-info">
+										<h3>Katra Noor</h3>
+										<div class="team-role">Quality Assurance</div>
+										<p class="team-description">Ensuring excellence through rigorous testing and quality standards.</p>
+										<a href="team-katra.html" class="view-profile-btn">View Profile</a>
+									</div>
+								</div>
+							</a>
+						</div>
+
+						<!-- Team Member 5 -->
+						<div class="team-member">
+							<a href="team-stephen.html" style="text-decoration: none; color: inherit;">
+								<div class="team-card">
+									<div class="team-card-header">
+										<div class="team-image">🌐</div>
+									</div>
+									<div class="team-info">
+										<h3>Stephen Githua</h3>
+										<div class="team-role">Market Research</div>
+										<p class="team-description">Understanding customer needs and market opportunities through research.</p>
+										<a href="team-stephen.html" class="view-profile-btn">View Profile</a>
+									</div>
+								</div>
+							</a>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- Contact Section -->
+			<section id="contact" class="wrapper style1-alt">
+				<div class="inner">
+					<h2>Get in Touch</h2>
+					<p>Interested in our products? Let's discuss how we can help transform your business.</p>
+					<a href="mailto:contact@company.com" class="cta-button" style="display: inline-block; margin-top: 20px;">Contact Us</a>
+				</div>
+			</section>
+
+		</div>
 
 		<!-- Footer -->
-			<footer id="footer" class="wrapper style1-alt">
-				<div class="inner">
-					<ul class="menu">
-						<li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-					</ul>
-				</div>
-			</footer>
+		<footer id="footer" class="wrapper style1-alt">
+			<div class="inner">
+				<ul class="menu">
+					<li>&copy; 2024 Product Showcase. All rights reserved.</li>
+					<li>Designed with innovation and creativity</li>
+				</ul>
+			</div>
+		</footer>
+
+		<!-- Three.js Canvas -->
+		<div id="three-container" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;"></div>
 
 		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/jquery.scrollex.min.js"></script>
+		<script src="assets/js/jquery.scrolly.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+
+		<script>
+			// Three.js Background Setup
+			let scene, camera, renderer, particles;
+			
+			function initThreeJS() {
+				const container = document.getElementById('three-container');
+				
+				// Scene setup
+				scene = new THREE.Scene();
+				scene.background = new THREE.Color(0x0f0c29);
+				
+				camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+				camera.position.z = 5;
+				
+				renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+				renderer.setSize(window.innerWidth, window.innerHeight);
+				renderer.setPixelRatio(window.devicePixelRatio);
+				container.appendChild(renderer.domElement);
+				
+				// Create particle system
+				const geometry = new THREE.BufferGeometry();
+				const particleCount = 300;
+				const positions = new Float32Array(particleCount * 3);
+				const colors = new Float32Array(particleCount * 3);
+				
+				for (let i = 0; i < particleCount * 3; i += 3) {
+					positions[i] = (Math.random() - 0.5) * 20;
+					positions[i + 1] = (Math.random() - 0.5) * 20;
+					positions[i + 2] = (Math.random() - 0.5) * 20;
+					
+					colors[i] = Math.random() * 0.5 + 0.5;
+					colors[i + 1] = Math.random() * 0.3 + 0.3;
+					colors[i + 2] = Math.random() * 0.8 + 0.2;
+				}
+				
+				geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+				geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+				
+				const material = new THREE.PointsMaterial({
+					size: 0.1,
+					sizeAttenuation: true,
+					vertexColors: true,
+					transparent: true,
+					opacity: 0.6
+				});
+				
+				particles = new THREE.Points(geometry, material);
+				scene.add(particles);
+				
+				// Add rotating wireframe cube
+				const cubeGeometry = new THREE.IcosahedronGeometry(2, 4);
+				const cubeMaterial = new THREE.MeshPhongMaterial({
+					color: 0x667eea,
+					emissive: 0x667eea,
+					wireframe: true,
+					transparent: true,
+					opacity: 0.1
+				});
+				const cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
+				scene.add(cube);
+				
+				// Lighting
+				const light = new THREE.PointLight(0x667eea, 1, 100);
+				light.position.set(5, 5, 5);
+				scene.add(light);
+				
+				const ambientLight = new THREE.AmbientLight(0x764ba2, 0.3);
+				scene.add(ambientLight);
+				
+				// Animation loop
+				function animate() {
+					requestAnimationFrame(animate);
+					
+					particles.rotation.x += 0.0001;
+					particles.rotation.y += 0.0003;
+					cube.rotation.x += 0.0005;
+					cube.rotation.y += 0.0008;
+					cube.rotation.z += 0.0003;
+					
+					renderer.render(scene, camera);
+				}
+				animate();
+				
+				// Handle window resize
+				window.addEventListener('resize', onWindowResize, false);
+			}
+			
+			function onWindowResize() {
+				camera.aspect = window.innerWidth / window.innerHeight;
+				camera.updateProjectionMatrix();
+				renderer.setSize(window.innerWidth, window.innerHeight);
+			}
+			
+			// Initialize Three.js when page loads
+			window.addEventListener('DOMContentLoaded', initThreeJS);
+
+			// 3D Tilt effect on product cards
+			document.querySelectorAll('.product-card').forEach(card => {
+				card.addEventListener('mousemove', (e) => {
+					const rect = card.getBoundingClientRect();
+					const x = e.clientX - rect.left;
+					const y = e.clientY - rect.top;
+					
+					const centerX = rect.width / 2;
+					const centerY = rect.height / 2;
+					
+					const rotateX = ((y - centerY) / centerY) * 5;
+					const rotateY = ((centerX - x) / centerX) * 5;
+					
+					card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+				});
+
+				card.addEventListener('mouseleave', () => {
+					card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)';
+				});
+			});
+
+			// Smooth scroll for navigation
+			document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+				anchor.addEventListener('click', function (e) {
+					e.preventDefault();
+					const target = document.querySelector(this.getAttribute('href'));
+					if (target) {
+						target.scrollIntoView({
+							behavior: 'smooth',
+							block: 'start'
+						});
+					}
+				});
+			});
+		</script>
 
 	</body>
 </html>
